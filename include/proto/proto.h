@@ -7,13 +7,17 @@
 
 #ifndef PROTO_H_
     #define PROTO_H_
-    #include <SFML/System/Vector2.h>
-    #include <SFML/Graphics/Sprite.h>
-    #include <SFML/Graphics/Color.h>
-    #include "struct/button.h"
-    #include "struct/struct_game.h"
-    #include "struct/volume_bar.h"
-    #include "struct/color.h"
+
+#include <SFML/System/Vector2.h>
+#include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics/Color.h>
+#include "struct/button.h"
+#include "struct/color.h"
+#include "struct/game_object.h"
+#include "struct/music_sound.h"
+#include "struct/scene.h"
+#include "struct/text.h"
+#include "struct/volume_bar.h"
 
     sfVector2f create_vect(float x, float y);
     char *create_array(char *nb, int i);

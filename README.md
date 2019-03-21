@@ -15,8 +15,8 @@ T = Text
 
 Each argument is not required to be used there are default values ​​but for some argument is very recommendable. In addition, the argument has no order
 
-Game Object:
-    Path = "path": Retrieves the path of the texture in relation to the executable
+Game Object:\n
+    Path = "path": Retrieves the path of the texture in relation to the executable\n
     Type = nbr: Set the game object to this id which is useful for later retrieve it
     Rect = (x, y, width, height): Set the sprite rect
     Pos (x, y): Takes the sprite is the place at the coordinate attention it does it with respect to the middle of the rect of the sprite

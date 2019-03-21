@@ -10,7 +10,7 @@ M = Music
 S = Sound
 B = Boutton
 T = Text
-# = Comment
+\# = Comment
 
 
 Each argument is not required to be used there are default values ​​but for some argument is very recommendable. In addition, the argument has no order
@@ -67,7 +67,7 @@ M = Music
 S = Sound
 B = Boutton
 T = Text
-# = Commentaire
+\# = Commentaire
 
 
 Chacun des argument n'est pas obliger d'etre utiliser il y a des valeur par defaut mais pour certain argument c'est tres recommander. De plus les argument n'a pas d'ordre

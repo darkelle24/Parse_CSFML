@@ -38,7 +38,7 @@ volume_bar_t *volume_bar_init(sfVector2f pos, sfVector2f size, int volume)
     return (strct);
 }
 
-void volume_bar_move(volume_bar_t *vol_bar, sfVector2i orig_mouse)
+void volume_bar_move(volume_bar_t *vol_bar, sfVector2f orig_mouse)
 {
     sfVector2f pos = sfRectangleShape_getPosition(vol_bar->rect_ori);
     sfVector2f size = sfRectangleShape_getSize(vol_bar->rect_ori);
@@ -61,21 +61,27 @@ void volume_bar_active(volume_bar_t *vol_bar, sfRenderWindow *window)
 {
     sfFloatRect button_vect =
     sfRectangleShape_getGlobalBounds(vol_bar->rect_ori);
-    sfVector2i orig_mouse = sfMouse_getPositionRenderWindow(window);
+    sfVector2f orig_mouse = sfRenderWindow_mapPixelToCoords(window
+    , sfMouse_getPositionRenderWindow(window)
+    , sfRenderWindow_getDefaultView(window));
 
     if (vol_bar->onclick == sfFalse && sfMouse_isButtonPressed
     (sfMouseLeft) == sfTrue && sfFloatRect_contains(&button_vect, orig_mouse.x
     , orig_mouse.y) == sfTrue) {
         vol_bar->onclick = sfTrue;
-        sfRectangleShape_setFillColor(vol_bar->rect, sfWhite);
+        sfRectangleShape_setFillColor(vol_bar->rect, vol_bar->active);
     } else if (vol_bar->onclick == sfTrue && sfMouse_isButtonPressed
     (sfMouseLeft) == sfFalse) {
         vol_bar->onclick = sfFalse;
-        sfRectangleShape_setFillColor(vol_bar->rect, create_color(200, 200
-        , 200, 200));
+        sfRectangleShape_setFillColor(vol_bar->rect, vol_bar->unactive);
     }
     if (vol_bar->onclick == sfTrue)
         volume_bar_move(vol_bar, orig_mouse);
     sfRenderWindow_drawRectangleShape(window, vol_bar->rect_ori, NULL);
     sfRenderWindow_drawRectangleShape(window, vol_bar->rect, NULL);
+}
+
+void volume_bar_display(other_t *other, sfRenderWindow *window)
+{
+    volume_bar_active(((volume_bar_t *) other->other), window);
 }

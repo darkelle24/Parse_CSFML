@@ -49,7 +49,6 @@ void text_list_free(text_list_t *list)
             save = list;
             list = list->next;
             sfText_destroy(save->text->text);
-            sfFont_destroy(save->text->font);
             free(save->text->str);
             free(save->text);
             free(save);
@@ -68,7 +67,7 @@ void display_list_free(display_order *list)
     }
 }
 
-void free_scene(scene_s *scene)
+void free_scene(scene_t *scene)
 {
     button_list_free(scene->list_but);
     game_list_free(scene->list_ob);
@@ -76,5 +75,7 @@ void free_scene(scene_s *scene)
     sound_list_free(scene->list_sound);
     text_list_free(scene->list_text);
     display_list_free(scene->order);
+    if (scene->font != NULL)
+        sfFont_destroy(scene->font);
     free(scene);
 }

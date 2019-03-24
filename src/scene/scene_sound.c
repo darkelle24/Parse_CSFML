@@ -59,7 +59,7 @@ void sound_list_free(multi_sound *list)
     }
 }
 
-void scene_sound(scene_s *scene, char *phrase)
+void scene_sound(scene_t *scene, char *phrase)
 {
     char *path = path_recup(phrase);
     int id = find_nbr(phrase, "ID=");

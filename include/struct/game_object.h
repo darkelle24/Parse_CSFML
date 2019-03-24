@@ -12,8 +12,8 @@
 
     typedef struct game_object_t
     {
-        int type;
-        int affiche;
+        int id;
+        int display;
         sfTexture *texture;
         sfSprite *Sprite;
     }       game_object;

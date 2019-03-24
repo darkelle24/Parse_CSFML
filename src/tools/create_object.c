@@ -29,7 +29,7 @@ sfIntRect rect, int type)
     sfSprite_setOrigin(object->Sprite
     , create_vect((rect.width - rect.left) / 2, (rect.height - rect.top) / 2));
     sfSprite_setPosition(object->Sprite, pos);
-    object->type = type;
+    object->id = type;
     return (object);
 }
 
@@ -38,8 +38,8 @@ game_object *game_object_copy(game_object *to_copy, int display)
     game_object *object = malloc(sizeof(game_object));
 
     object->Sprite = sfSprite_copy(to_copy->Sprite);
-    object->type = to_copy->type;
-    object->affiche = display;
+    object->id = to_copy->id;
+    object->display = display;
     return (object);
 }
 
@@ -57,7 +57,7 @@ game_list *create_game_list(void)
 game_object *game_object_find(game_list *list_ob, int id)
 {
     while (list_ob != NULL && list_ob->object != NULL
-    && list_ob->object->type != id) {
+    && list_ob->object->id != id) {
         list_ob = list_ob->next;
     }
     if (list_ob == NULL)

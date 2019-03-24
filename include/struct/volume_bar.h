@@ -16,6 +16,8 @@
         sfBool onclick;
         int volume;
         sfRectangleShape *rect_ori;
+        sfColor unactive;
+        sfColor active;
     }     volume_bar_t;
 
 #endif /* !VOLUME_BAR_H_ */

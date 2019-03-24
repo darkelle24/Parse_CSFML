@@ -16,15 +16,19 @@
         "M",
         "S",
         "T",
+        "F",
+        "V",
         NULL
     };
 
-    void (* const Command[])(scene_s *, char *) = {
+    void (* const Command[])(scene_t *, char *) = {
         &scene_object,
         &scene_button,
         &scene_music,
         &scene_sound,
-        &scene_text
+        &scene_text,
+        &scene_font,
+        &scene_volume_bar
     };
 
 #endif /* !TAB_OF_FC_H_ */

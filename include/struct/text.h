@@ -16,7 +16,6 @@
     {
         sfText *text;
         int id;
-        sfFont *font;
         char *str;
         int disp;
     };

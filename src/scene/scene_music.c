@@ -51,7 +51,7 @@ void music_list_free(multi_music *list)
     }
 }
 
-void scene_music(scene_s *scene, char *phrase)
+void scene_music(scene_t *scene, char *phrase)
 {
     char *path = path_recup(phrase);
     int id = find_nbr(phrase, "ID=");

@@ -6,8 +6,9 @@
 */
 
 #include <unistd.h>
+#include <stdio.h>
 #include "proto/lib.h"
-#include "list/macro.h"
+#include "other/macro.h"
 #include "struct/button.h"
 
 void fc_button_null(button_t *button, IGNORE void *unused)
@@ -26,7 +27,7 @@ void button_init(button_t *button, sfVector2f position
     , ((position.y + size.y) - position.y) / 2));
     sfRectangleShape_setPosition(button->rect, position);
     sfRectangleShape_setSize(button->rect, size);
-    button->callback_click = &fc_button_null;
+    button->callback_click_release = &fc_button_null;
     button->callback_hover = NULL;
     button->callback_hover_exit = NULL;
     button->to_send_click = NULL;
@@ -49,18 +50,19 @@ button_t *button_find(button_list_t *list, int id)
 void button_set_callback_on_click(button_t *button
 , void (*to_callback)(button_t *, void *), void *a_envoyer)
 {
-    button->callback_click = to_callback;
+    button->callback_click_release = to_callback;
     button->to_send_click = a_envoyer;
 }
 
 int button_is_clicked(button_t *button, sfVector2f click_position)
 {
     sfFloatRect button_vect = sfRectangleShape_getGlobalBounds(button->rect);
+    sfVector2f pos = sfRectangleShape_getPosition(button->rect);
 
     if (sfFloatRect_contains(&button_vect, click_position.x
     , click_position.y) == sfTrue) {
-        if (button->callback_click != NULL)
-            button->callback_click(button, button->to_send_click);
+        if (button->callback_click_release != NULL)
+            button->callback_click_release(button, button->to_send_click);
         return (1);
     }
     return (0);

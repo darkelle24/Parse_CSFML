@@ -9,7 +9,6 @@
 #include <stdlib.h>
 #include "struct/text.h"
 #include "struct/scene.h"
-#include "list/macro.h"
 #include "proto/proto.h"
 
 sfColor color_recup(char *phrase, char *to_find)
@@ -32,7 +31,7 @@ char *str_recup(char *phrase, char *to_find)
         return (NULL);
 }
 
-void scene_text(scene_s *scene, char *phrase)
+void scene_text(scene_t *scene, char *phrase)
 {
     text_t *text = malloc(sizeof(text_t));
     char *path = path_recup(phrase);
@@ -41,6 +40,7 @@ void scene_text(scene_s *scene, char *phrase)
     int id = find_nbr(phrase, "ID=");
     int disp = find_nbr(phrase, "Disp=");
     int size = find_nbr(phrase, "Sizechar=");
+    int prio = find_nbr(phrase, "Prio=");
 
     text->str = str_recup(phrase, "Str=");
     text_init(text, position, disp, id);
@@ -48,9 +48,8 @@ void scene_text(scene_s *scene, char *phrase)
     sfText_setCharacterSize(text->text, size);
     if (text->str != NULL)
         sfText_setString(text->text, text->str);
-    if (path != NULL) {
-        text->font = sfFont_createFromFile(path);
-        sfText_setFont(text->text, text->font);
-    }
+    if (scene->font != NULL)
+        sfText_setFont(text->text, scene->font);
     text_list_add(scene->list_text, text);
+    display_list_add_text(&scene->order, text, prio);
 }

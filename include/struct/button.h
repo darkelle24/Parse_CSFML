@@ -18,11 +18,13 @@
         sfRectangleShape *rect;
         int id;
         int pass;
-        void (*callback_click)(button_t *, void *);
+        void (*callback_click_press)(button_t *, void *);
+        void (*callback_click_release)(button_t *, void *);
         void (*callback_hover)(button_t *, void *);
         void (*callback_hover_exit)(button_t *, void *);
         void *to_send_click;
         void *to_send_click2;
+        sfTexture *texture;
         game_object *on_button;
     };
 

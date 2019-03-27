@@ -16,15 +16,46 @@
 #include "struct/game_object.h"
 #include "struct/music_sound.h"
 #include "struct/scene.h"
+#include "struct/progress_bar.h"
 #include "struct/text.h"
 #include "struct/volume_bar.h"
+#include "struct/geo_form.h"
+#include "struct/text_bar.h"
 
     sfVector2f create_vect(float x, float y);
+    text_bar_t *create_text_bar(int lenght_max, sfVector2f pos
+    , int sizechar, sfFont *font);
+    void text_bar_create_barre(text_bar_t *text, int size_longeur
+    , sfColor color);
+    void text_bar_free(void *text_void);
+    void text_bar_write(sfEvent event, scene_t *scene);
+    void display_text_bar(other_t *other, sfRenderWindow *window);
+    other_t *other_list_add(other_t **list, void *other, char type, int id);
+    void scene_text_bar(scene_t *scene, char *phrase);
     char *create_array(char *nb, int i);
+    float calcul_lenght(sfVector2f pos_target, sfVector2f pos_circle);
     sfSound *sound_find(multi_sound *list_sound, int id);
-    int volume_bar_free(volume_bar_t *vol_bar);
+    button_t *check_up(button_list_t *list, button_t *button
+    , sfRenderWindow *window);
+    void rectangle_display(other_t *other, sfRenderWindow *window);
+    void rectangle_free(void *rectangle_void);
+    void scene_rectangle(scene_t *scene, char *phrase);
+    void progress_bar_change_value(progress_bar_t *pro_bar, float new_value);
+    void progress_bar_free(void *pro_bar_void);
+    void scene_progress_bar(scene_t *scene, char *phrase);
+    void progress_bar_display(other_t *other, sfRenderWindow *window);
+    void progress_bar_mini_bar(progress_bar_t *strct, int mini_bar
+    , sfColor color, int size);
+    button_t *check_down(button_list_t *list, button_t *button
+    , sfRenderWindow *window);
+    void volume_bar_free(void *vol_bar_void);
     text_list_t *create_text_list();
-    void button_list_is_hover(button_list_t *button_list
+    void button_list_is_hover(scene_t *scene, button_list_t *button_list
+    , sfRenderWindow *window);
+    void other_free(other_t *list);
+    progress_bar_t *progress_bar_init(sfVector2f pos
+    , sfVector2f size, int pourc);
+    void button_move_with_button(sfEvent event, scene_t *scene
     , sfRenderWindow *window);
     void scene_volume_bar(scene_t *scene, char *phrase);
     volume_bar_t *volume_bar_init(sfVector2f pos, sfVector2f size, int volume);
@@ -48,7 +79,7 @@
     void destroy_object(game_object *obj, int nb, sfTexture **texture);
     void sprite_rotate(sfSprite *to_rotate, sfVector2f pos
     , float angle_of_start);
-    int button_list_is_clicked(button_list_t *button_list
+    void button_list_is_clicked(button_list_t *button_list
     , sfRenderWindow *window);
     button_list_t *create_button_list();
     void button_list_free(button_list_t *list);
@@ -74,6 +105,8 @@
     void sprite_rotate(sfSprite *to_rotate, sfVector2f pos
     , float angle_of_start);
     sfIntRect rect_recup(char *phrase);
+    sfRectangleShape *create_rectangle(sfVector2f pos
+    , sfVector2f size, sfColor col);
     sfCircleShape *create_circle(sfVector2f pos, float radius
     , float outline_thickness, sfColor color_outline);
     game_list *create_game_list();

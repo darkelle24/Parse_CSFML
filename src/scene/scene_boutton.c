@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_defender_2018
+** my_rpg_2018
 ** File description:
 ** scene_boutton
 */
@@ -63,10 +63,22 @@ void set_button_call(button_t *button, char *phrase, char *to_find, int i)
 
 void set_fc_call(button_t *bouton, char *phrase)
 {
+    char *path = path_recup(phrase);
+    int keyboard = find_nbr(phrase, "Key=");
+    sfIntRect rect = rect_recup(phrase);
+
     set_button_call(bouton, phrase, "Fc_clrl=", 1);
     set_button_call(bouton, phrase, "Fc_ho=", 2);
     set_button_call(bouton, phrase, "Fc_hoex=", 3);
     set_button_call(bouton, phrase, "Fc_clpr=", 4);
+    if (path != NULL) {
+        bouton->texture = sfTexture_createFromFile(path, NULL);
+        sfRectangleShape_setTexture(bouton->rect, bouton->texture, sfFalse);
+        free(path);
+    }
+    if (keyboard > 0)
+        bouton->keyboard = sfTrue;
+    sfRectangleShape_setTextureRect(bouton->rect, rect);
 }
 
 void scene_button(scene_t *scene, char *phrase)
@@ -81,16 +93,8 @@ void scene_button(scene_t *scene, char *phrase)
     int prio = find_nbr(phrase, "Prio=");
     int game_object_link = find_nbr(phrase, "GO=");
     int outline_thick = find_nbr(phrase, "Size_Out=");
-    char *path = path_recup(phrase);
-    sfIntRect rect = rect_recup(phrase);
 
     button_init(bouton, position, size, id);
-    if (path != NULL) {
-        bouton->texture = sfTexture_createFromFile(path, NULL);
-        sfRectangleShape_setTexture(bouton->rect, bouton->texture, sfFalse);
-        free(path);
-    }
-    sfRectangleShape_setTextureRect(bouton->rect, rect);
     if (status == 0)
         status = 4;
     button_set_status(bouton, status, color);

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_defender_2018
+** my_rpg_2018
 ** File description:
 ** parsing_of_scene
 */
@@ -59,6 +59,7 @@ void init_scene(scene_t *scene)
     scene->other = NULL;
     scene->order = create_display_list();
     scene->font = NULL;
+    scene->but_with_keyboard = NULL;
 }
 
 void write_error_path(char *path)

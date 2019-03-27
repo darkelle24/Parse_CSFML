@@ -39,6 +39,7 @@
         text_list_t *list_text;
         other_t *other;
         sfFont *font;
+        button_t *but_with_keyboard;
         display_order *order;
     }       scene_t;
 

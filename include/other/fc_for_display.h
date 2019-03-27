@@ -13,11 +13,17 @@
 #include "struct/scene.h"
 
     const char disp_name[] = {
-        'V'
+        'V',
+        'P',
+        'R',
+        't'
     };
 
     void (* const command[])(other_t *, sfRenderWindow *) = {
         &volume_bar_display,
+        &progress_bar_display,
+        &rectangle_display,
+        &display_text_bar,
         NULL
     };
 

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_defender_2018
+** my_rpg_2018
 ** File description:
 ** tab_of_fc
 */
@@ -18,6 +18,9 @@
         "T",
         "F",
         "V",
+        "P",
+        "R",
+        "t",
         NULL
     };
 
@@ -28,7 +31,10 @@
         &scene_sound,
         &scene_text,
         &scene_font,
-        &scene_volume_bar
+        &scene_volume_bar,
+        &scene_progress_bar,
+        &scene_rectangle,
+        &scene_text_bar
     };
 
 #endif /* !TAB_OF_FC_H_ */

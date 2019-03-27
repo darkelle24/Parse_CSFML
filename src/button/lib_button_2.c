@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_defender_2018
+** my_rpg_2018
 ** File description:
 ** lib_button_2
 */
@@ -10,22 +10,20 @@
 #include "struct/button.h"
 #include "proto/proto.h"
 
-int button_list_is_clicked(button_list_t *button_list
+void button_list_is_clicked(button_list_t *button_list
 , sfRenderWindow *window)
 {
-    int return_status = 0;
     sfVector2f click_position = sfRenderWindow_mapPixelToCoords(window
     , sfMouse_getPositionRenderWindow(window)
     , sfRenderWindow_getDefaultView(window));
 
-    while (button_list != NULL && return_status == 0) {
+    while (button_list != NULL) {
         if (button_list->button->pass != 4 && button_list->button->pass != 2) {
-            return_status = button_is_clicked(button_list->button
+            button_is_clicked(button_list->button
             , click_position);
         }
         button_list = button_list->next;
     }
-    return (return_status);
 }
 
 int button_list_remove(button_list_t *list, button_t *button, int nbr)
@@ -40,6 +38,8 @@ int button_list_remove(button_list_t *list, button_t *button, int nbr)
 void button_free(button_t *button)
 {
     sfRectangleShape_destroy(button->rect);
+    if (button->texture != NULL)
+        sfTexture_destroy(button->texture);
     free(button);
 }
 

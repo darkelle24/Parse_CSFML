@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_defender_2018
+** my_rpg_2018
 ** File description:
 ** free_scene
 */
@@ -75,6 +75,7 @@ void free_scene(scene_t *scene)
     sound_list_free(scene->list_sound);
     text_list_free(scene->list_text);
     display_list_free(scene->order);
+    other_free(scene->other);
     if (scene->font != NULL)
         sfFont_destroy(scene->font);
     free(scene);

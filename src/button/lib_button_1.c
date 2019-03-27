@@ -35,6 +35,8 @@ void button_init(button_t *button, sfVector2f position
     button->id = id;
     button->on_button = NULL;
     button->to_send_click2 = NULL;
+    button->texture = NULL;
+    button->keyboard = sfFalse;
 }
 
 button_t *button_find(button_list_t *list, int id)
@@ -63,6 +65,8 @@ int button_is_clicked(button_t *button, sfVector2f click_position)
     , click_position.y) == sfTrue) {
         if (button->callback_click_release != NULL)
             button->callback_click_release(button, button->to_send_click);
+        if (button->callback_hover != NULL)
+            button->callback_hover(button, button->to_send_click);
         return (1);
     }
     return (0);

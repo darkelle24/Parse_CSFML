@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_defender_2018
+** my_rpg_2018
 ** File description:
 ** volume_bar
 */
@@ -10,11 +10,11 @@
 #include "proto/proto.h"
 #include "struct/volume_bar.h"
 
-int volume_bar_free(volume_bar_t *vol_bar)
+void volume_bar_free(void *vol_bar_void)
 {
+    volume_bar_t *vol_bar = vol_bar_void;
     sfRectangleShape_destroy(vol_bar->rect);
     sfRectangleShape_destroy(vol_bar->rect_ori);
-    return (vol_bar->volume);
 }
 
 volume_bar_t *volume_bar_init(sfVector2f pos, sfVector2f size, int volume)
@@ -67,11 +67,11 @@ void volume_bar_active(volume_bar_t *vol_bar, sfRenderWindow *window)
 
     if (vol_bar->onclick == sfFalse && sfMouse_isButtonPressed
     (sfMouseLeft) == sfTrue && sfFloatRect_contains(&button_vect, orig_mouse.x
-    , orig_mouse.y) == sfTrue) {
+    , orig_mouse.y) == sfTrue && sfRenderWindow_hasFocus(window)) {
         vol_bar->onclick = sfTrue;
         sfRectangleShape_setFillColor(vol_bar->rect, vol_bar->active);
     } else if (vol_bar->onclick == sfTrue && sfMouse_isButtonPressed
-    (sfMouseLeft) == sfFalse) {
+    (sfMouseLeft) == sfFalse && sfRenderWindow_hasFocus(window)) {
         vol_bar->onclick = sfFalse;
         sfRectangleShape_setFillColor(vol_bar->rect, vol_bar->unactive);
     }

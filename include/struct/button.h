@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_defender_2018
+** my_rpg_2018
 ** File description:
 ** button
 */
@@ -24,6 +24,7 @@
         void (*callback_hover_exit)(button_t *, void *);
         void *to_send_click;
         void *to_send_click2;
+        sfBool keyboard;
         sfTexture *texture;
         game_object *on_button;
     };
